@@ -19,7 +19,6 @@ public class Main {
             }
             System.out.print("> ");
             String cmd = sc.nextLine();
-            
             if (cmd.length() == 1 && "wasd".contains(cmd)) {
                 Snake.move(cmd);
                 Snake.moveMirrorOpposite(cmd);

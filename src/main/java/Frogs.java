@@ -1,9 +1,9 @@
-
 public class Frogs {
 
     public static final int FROG_COUNT = 3;
 
     private static Point[] positions = initializeFrogs();
+
     public static boolean tryEscape(Point aim) {
         if (!Board.isFood(aim)) return false;
         if (Game.rollChance(0.10)) {
@@ -13,11 +13,7 @@ public class Frogs {
         }
         return false;
     }
-
-    public static Point[] getPositions() {
-        return positions;
-    }
-
+    public static Point[] getPositions() { return positions; }
     public static void replaceFrog(Point frog) {
         for (int i = 0; i < positions.length; i++) {
             if (positions[i] != null && positions[i].equals(frog)) {
@@ -27,7 +23,6 @@ public class Frogs {
         }
         Game.drawFrogsOnBoard();
     }
-
     private static Point[] initializeFrogs() {
         Point[] positions = new Point[FROG_COUNT];
         for (int i = 0; i < FROG_COUNT; i++) {
@@ -37,7 +32,6 @@ public class Frogs {
         }
         return positions;
     }
-
     public static void tick() {
         for (int i = 0; i < positions.length; i++) {
             Point cur = positions[i];

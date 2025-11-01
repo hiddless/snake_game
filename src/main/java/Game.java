@@ -70,18 +70,39 @@ public class Game {
         char[][] cells = Board.getCells();
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
-                if (cells[i][j] == Board.SNAKE_BODY_CHAR || Character.isDigit(cells[i][j])) {
+                if (cells[i][j] == Board.SNAKE_BODY_CHAR ||
+                        cells[i][j] == Board.SNAKE_HEAD_CHAR ||
+                        Character.isDigit(cells[i][j])) {
                     cells[i][j] = 0;
                 }
             }
         }
-        Point[] body = Snake.getBody();
+        Point[] a = Snake.getBody();
         for (int i = 0; i < Snake.getLength(); i++) {
-            Point p = body[i];
+            Point p = a[i];
             if (i == 0) {
                 cells[p.getX()][p.getY()] = Board.SNAKE_HEAD_CHAR;
             } else {
-                cells[p.getX()][p.getY()] = Board.SNAKE_BODY_CHAR;
+                if (digitSikin) {
+                    int n = ((i - 1) % 9) + 1;
+                    cells[p.getX()][p.getY()] = (char)('0' + n);
+                } else {
+                    cells[p.getX()][p.getY()] = Board.SNAKE_BODY_CHAR;
+                }
+            }
+        }
+        Point[] b = Snake.getMirrorBody();
+        for (int i = 0; i < Snake.getMirrorLength(); i++) {
+            Point p = b[i];
+            if (i == 0) {
+                cells[p.getX()][p.getY()] = Board.SNAKE_HEAD_CHAR;
+            } else {
+                if (digitSikin) {
+                    int n = ((i - 1) % 9) + 1;
+                    cells[p.getX()][p.getY()] = (char)('0' + n);
+                } else {
+                    cells[p.getX()][p.getY()] = Board.SNAKE_BODY_CHAR;
+                }
             }
         }
     }
